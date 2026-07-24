@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no" />
+<meta name="theme-color" content="#0a0a0f" />
+<title>Sigil Fractal Lab</title>
+<style>
+  :root{
+    --bg:#0a0a0f; --panel:#15151d; --text:#f3f3f7; --muted:#a8a8b3;
+    --line:#2a2a36; --accent:#8c7cff;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;background:var(--bg);color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    min-height:100vh;display:flex;flex-direction:column;
+    padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom);
+  }
+  header{padding:14px 16px 8px}
+  h1{font-size:20px;margin:0 0 4px}
+  .sub{font-size:13px;color:var(--muted)}
+  main{display:grid;grid-template-columns:1fr;gap:12px;padding:0 12px 16px}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+  .canvas-wrap{position:relative;aspect-ratio:1/1;background:#000;touch-action:none}
+  canvas{width:100%;height:100%;display:block}
+  .hud{
+    position:absolute;left:10px;top:10px;padding:6px 8px;border-radius:10px;
+    font:12px ui-monospace,SFMono-Regular,Menlo,monospace;
+    background:rgba(0,0,0,.48);backdrop-filter:blur(6px)
+  }
+  .controls{padding:12px}
+  .row{display:grid;grid-template-columns:92px 1fr 44px;align-items:center;gap:8px;margin:9px 0}
+  label{font-size:13px}
+  input[type=range]{width:100%}
+  output{font:12px ui-monospace,SFMono-Regular,Menlo,monospace;text-align:right;color:var(--muted)}
+  .seedrow{display:grid;grid-template-columns:1fr auto;gap:8px;margin-top:10px}
+  input[type=text]{
+    min-width:0;background:#0f0f15;border:1px solid var(--line);color:var(--text);
+    border-radius:10px;padding:10px 11px;font-size:16px
+  }
+  .buttons{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:10px}
+  button{
+    appearance:none;border:1px solid var(--line);background:#20202a;color:var(--text);
+    border-radius:11px;padding:11px 10px;font-weight:600;font-size:14px
+  }
+  button.primary{background:var(--accent);border-color:transparent;color:white}
+  button:active{transform:scale(.98)}
+  .note{font-size:12px;line-height:1.35;color:var(--muted);padding:0 12px 12px}
+  @media (min-width:850px){
+    main{grid-template-columns:minmax(420px,700px) minmax(300px,420px);align-items:start;max-width:1160px;width:100%;margin:auto}
+    .canvas-wrap{aspect-ratio:1/1}
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>Sigil Fractal Lab</h1>
+  <div class="sub">A deterministic generative-art prototype for iPhone Safari.</div>
+</header>
+
+<main>
+  <section class="card">
+    <div class="canvas-wrap" id="wrap">
+      <canvas id="canvas"></canvas>
+      <div class="hud" id="hud">rendering…</div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="controls">
+      <div class="row"><label>Attention</label><input id="attention" type="range" min="0" max="1" step=".01" value=".78"><output id="oAttention"></output></div>
+      <div class="row"><label>Emotion</label><input id="emotion" type="range" min="0" max="1" step=".01" value=".44"><output id="oEmotion"></output></div>
+      <div class="row"><label>Identity</label><input id="identity" type="range" min="0" max="1" step=".01" value=".66"><output id="oIdentity"></output></div>
+      <div class="row"><label>Memory</label><input id="memory" type="range" min="0" max="1" step=".01" value=".72"><output id="oMemory"></output></div>
+      <div class="row"><label>Distraction</label><input id="distraction" type="range" min="0" max="1" step=".01" value=".12"><output id="oDistraction"></output></div>
+
+      <div class="seedrow">
+        <input id="seed" type="text" value="first-sigil" autocapitalize="off" autocomplete="off" spellcheck="false" />
+        <button id="applySeed">Apply seed</button>
+      </div>
+
+      <div class="buttons">
+        <button class="primary" id="render">Generate</button>
+        <button id="randomize">Randomize</button>
+        <button id="breathe">Breathe</button>
+        <button id="save">Save PNG</button>
+      </div>
+    </div>
+    <div class="note">
+      Pinch or drag is intentionally omitted in this first prototype so generation stays fast and stable on iPhone. The same seed and slider values always produce the same image.
+    </div>
+  </section>
+</main>
+
+<script>
+(() => {
+  const canvas = document.getElementById('canvas');
+  const ctx = canvas.getContext('2d', { alpha:false });
+  const wrap = document.getElementById('wrap');
+  const hud = document.getElementById('hud');
+
+  const ids = ['attention','emotion','identity','memory','distraction'];
+  const sliders = Object.fromEntries(ids.map(id => [id, document.getElementById(id)]));
+  const outputs = {
+    attention: document.getElementById('oAttention'),
+    emotion: document.getElementById('oEmotion'),
+    identity: document.getElementById('oIdentity'),
+    memory: document.getElementById('oMemory'),
+    distraction: document.getElementById('oDistraction')
+  };
+  const seedInput = document.getElementById('seed');
+
+  let breatheOn = false;
+  let breathStart = 0;
+  let pending = 0;
+
+  function hashString(str){
+    let h = 2166136261 >>> 0;
+    for (let i=0;i<str.length;i++){
+      h ^= str.charCodeAt(i);
+      h = Math.imul(h, 16777619);
+    }
+    return h >>> 0;
+  }
+  function rand01(seed){
+    let x = seed >>> 0;
+    x ^= x << 13; x ^= x >>> 17; x ^= x << 5;
+    return (x >>> 0) / 4294967295;
+  }
+  function values(){
+    return Object.fromEntries(ids.map(id => [id, Number(sliders[id].value)]));
+  }
+  function updateOutputs(){
+    for (const id of ids) outputs[id].value = Number(sliders[id].value).toFixed(2);
+  }
+  function fitCanvas(){
+    const rect = wrap.getBoundingClientRect();
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const size = Math.max(320, Math.floor(rect.width * dpr));
+    if (canvas.width !== size || canvas.height !== size){
+      canvas.width = size; canvas.height = size;
+    }
+  }
+
+  function palette(t, phase, sat, bright){
+    const hue = (360 * (t + phase)) % 360;
+    const s = 45 + sat * 50;
+    const l = 8 + bright * (18 + 54 * Math.pow(t, .7));
+    return `hsl(${hue} ${s}% ${l}%)`;
+  }
+
+  function render(time=0){
+    cancelAnimationFrame(pending);
+    pending = requestAnimationFrame(() => {
+      fitCanvas();
+      const w = canvas.width, h = canvas.height;
+      const img = ctx.createImageData(w,h);
+      const p = img.data;
+      const v = values();
+
+      const seedHash = hashString(seedInput.value || 'seed');
+      const r1 = rand01(seedHash);
+      const r2 = rand01(seedHash ^ 0x9e3779b9);
+      const r3 = rand01(seedHash ^ 0x85ebca6b);
+
+      const breath = breatheOn ? Math.sin((time - breathStart)/2600 * Math.PI*2) : 0;
+      const attention = Math.min(1, Math.max(0, v.attention + breath*0.08));
+      const emotion = Math.min(1, Math.max(0, v.emotion + breath*0.04));
+      const identity = v.identity;
+      const memory = v.memory;
+      const distraction = v.distraction;
+
+      // Parameter mapping:
+      // attention -> symmetry/zoom
+      // emotion -> nonlinear intensity
+      // identity -> rotation
+      // memory -> iteration depth
+      // distraction -> deterministic distortion
+      const zoom = 1.25 + attention * 1.65;
+      const angle = identity * Math.PI * 2 + (r1-.5)*0.7;
+      const ca = -0.72 + (r1-.5)*0.35 + emotion*0.11;
+      const cb =  0.18 + (r2-.5)*0.55 + identity*0.10;
+      const linear = 0.08 + attention*0.18;
+      const nonlinear = 0.76 + emotion*0.34;
+      const maxIter = Math.floor(42 + memory*150);
+      const phase = r3 + identity*.35;
+      const cosA = Math.cos(angle), sinA = Math.sin(angle);
+      const noiseAmp = distraction * 0.055;
+
+      let idx=0;
+      for(let py=0; py<h; py++){
+        const y0 = (py/h - .5) * 2.35 / zoom;
+        for(let px=0; px<w; px++){
+          const x0 = (px/w - .5) * 2.35 / zoom;
+
+          // Rotate the plane.
+          let zx = x0*cosA - y0*sinA;
+          let zy = x0*sinA + y0*cosA;
+
+          // Deterministic field distortion, not random per render.
+          const warp = noiseAmp * Math.sin((zx*9.1 + zy*7.7 + r2*6.28));
+          zx += warp;
+          zy -= warp * .72;
+
+          let i=0, mag2=0;
+          for(; i<maxIter; i++){
+            // z_(n+1) = lambda*z + mu*z^2 + c
+            const x2 = zx*zx - zy*zy;
+            const y2 = 2*zx*zy;
+            const nx = linear*zx + nonlinear*x2 + ca;
+            const ny = linear*zy + nonlinear*y2 + cb;
+            zx = nx; zy = ny;
+            mag2 = zx*zx + zy*zy;
+            if(mag2 > 32) break;
+          }
+
+          let t;
+          if(i === maxIter){
+            t = 0;
+          } else {
+            const smooth = i + 1 - Math.log2(Math.log2(Math.max(mag2, 1.00001)));
+            t = Math.max(0, Math.min(1, smooth/maxIter));
+          }
+
+          const rgb = palette(t, phase, emotion, attention);
+          // Convert HSL using a tiny temporary parse trick.
+          ctx.fillStyle = rgb;
+          const m = rgb.match(/hsl\(([\d.]+) ([\d.]+)% ([\d.]+)%\)/);
+          const H=+m[1]/360, S=+m[2]/100, L=+m[3]/100;
+          const hue2rgb=(p0,q0,t0)=>{if(t0<0)t0+=1;if(t0>1)t0-=1;if(t0<1/6)return p0+(q0-p0)*6*t0;if(t0<1/2)return q0;if(t0<2/3)return p0+(q0-p0)*(2/3-t0)*6;return p0};
+          let R,G,B;
+          if(S===0){R=G=B=L}else{
+            const q=L<.5?L*(1+S):L+S-L*S, pp=2*L-q;
+            R=hue2rgb(pp,q,H+1/3); G=hue2rgb(pp,q,H); B=hue2rgb(pp,q,H-1/3);
+          }
+          p[idx++] = Math.round(R*255);
+          p[idx++] = Math.round(G*255);
+          p[idx++] = Math.round(B*255);
+          p[idx++] = 255;
+        }
+      }
+      ctx.putImageData(img,0,0);
+      hud.textContent = `seed ${seedHash.toString(16)} · ${maxIter} iterations`;
+
+      if(breatheOn) requestAnimationFrame(render);
+    });
+  }
+
+  ids.forEach(id => sliders[id].addEventListener('input', () => {
+    updateOutputs();
+    render(performance.now());
+  }));
+  document.getElementById('render').onclick = () => render(performance.now());
+  document.getElementById('applySeed').onclick = () => render(performance.now());
+  seedInput.addEventListener('change', () => render(performance.now()));
+
+  document.getElementById('randomize').onclick = () => {
+    for(const id of ids) sliders[id].value = Math.random().toFixed(2);
+    seedInput.value = 'sigil-' + Math.random().toString(36).slice(2,10);
+    updateOutputs(); render(performance.now());
+  };
+
+  document.getElementById('breathe').onclick = (e) => {
+    breatheOn = !breatheOn;
+    e.currentTarget.textContent = breatheOn ? 'Stop breathing' : 'Breathe';
+    if(breatheOn){ breathStart = performance.now(); render(breathStart); }
+  };
+
+  document.getElementById('save').onclick = () => {
+    const a = document.createElement('a');
+    a.download = `sigil-fractal-${(seedInput.value||'seed').replace(/[^a-z0-9_-]+/gi,'-')}.png`;
+    a.href = canvas.toDataURL('image/png');
+    a.click();
+  };
+
+  window.addEventListener('resize', () => render(performance.now()));
+  updateOutputs();
+  render(performance.now());
+})();
+</script>
+</body>
+</html>
