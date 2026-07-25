@@ -1,26 +1,6 @@
-# Sigil Atlas Lab v4 — iPhone Flat Edition
+# SymbolDNA Engine v3
 
-All files belong directly in the GitHub repository root.
+Research-driven procedural symbolic construction engine.
 
-Required files:
-
-```text
-index.html
-styles.css
-app.js
-dna.js
-random.js
-renderer.js
-state.js
-seal.js
-cosmology.js
-device.js
-README.md
-```
-
-This version intentionally uses no folders so it can be uploaded from an iPhone through GitHub's website.
-
-GitHub Pages:
-
-- Branch: main
-- Folder: / (root)
+Pipeline:
+Identity -> Intent -> Evidence Engine -> Concept Graph -> Symbol DNA -> Generator -> Renderer -> Evidence Report
