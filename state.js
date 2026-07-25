@@ -1,1 +1,13 @@
-import{cloneDNA,DEFAULT_DNA}from"./dna.js";export const state={mode:"seal",seed:"first-sigil",variation:0,dna:cloneDNA(DEFAULT_DNA),breathing:false,breathStart:0};export function resetStateDNA(){state.dna=cloneDNA(DEFAULT_DNA)}
+import {DEFAULT_DNA,cloneDNA} from "./dna.js";
+
+export const state={
+  mode:"seal",
+  seed:"first-sigil",
+  variation:0,
+  dna:cloneDNA(DEFAULT_DNA),
+  breathing:false
+};
+
+export function resetDNA(){
+  state.dna=cloneDNA(DEFAULT_DNA);
+}

@@ -1,1 +1,42 @@
-export function prepareCanvas(canvas){const rect=canvas.getBoundingClientRect(),ratio=Math.min(window.devicePixelRatio||1,2),size=Math.max(720,Math.floor(rect.width*ratio));if(canvas.width!==size||canvas.height!==size){canvas.width=size;canvas.height=size}const ctx=canvas.getContext("2d");ctx.setTransform(1,0,0,1,0,0);ctx.clearRect(0,0,canvas.width,canvas.height);return ctx}export function drawBackdrop(ctx,a,b){const w=ctx.canvas.width,g=ctx.createRadialGradient(w*(.38+a*.18),w*(.32+b*.18),w*.04,w*.5,w*.5,w*.72);g.addColorStop(0,"#252039");g.addColorStop(.48,"#0c0b13");g.addColorStop(1,"#040406");ctx.fillStyle=g;ctx.fillRect(0,0,w,w);ctx.strokeStyle="rgba(255,255,255,.025)";ctx.lineWidth=1;for(let i=1;i<14;i++){ctx.beginPath();ctx.arc(w/2,w/2,(w/2)*(i/14),0,Math.PI*2);ctx.stroke()}}export function glowStroke(ctx,color,width,blur=18){ctx.strokeStyle=color;ctx.lineWidth=width;ctx.shadowColor=color;ctx.shadowBlur=blur;ctx.lineCap="round";ctx.lineJoin="round"}export const clearGlow=ctx=>ctx.shadowBlur=0;export function saveCanvas(canvas,filename){const a=document.createElement("a");a.download=filename;a.href=canvas.toDataURL("image/png");a.click()}
+export function prepareCanvas(canvas){
+  const width=Math.max(720,Math.floor(canvas.getBoundingClientRect().width*Math.min(devicePixelRatio||1,2)));
+  if(canvas.width!==width||canvas.height!==width){
+    canvas.width=width;
+    canvas.height=width;
+  }
+  const ctx=canvas.getContext("2d");
+  ctx.setTransform(1,0,0,1,0,0);
+  ctx.clearRect(0,0,width,width);
+  return ctx;
+}
+
+export function drawBackdrop(ctx,a,b){
+  const w=ctx.canvas.width;
+  const gradient=ctx.createRadialGradient(
+    w*(.38+a*.18),w*(.34+b*.16),w*.03,
+    w*.5,w*.5,w*.72
+  );
+  gradient.addColorStop(0,"#272039");
+  gradient.addColorStop(.45,"#0d0b14");
+  gradient.addColorStop(1,"#040406");
+  ctx.fillStyle=gradient;
+  ctx.fillRect(0,0,w,w);
+}
+
+export function glowStroke(ctx,color,width,blur=18){
+  ctx.strokeStyle=color;
+  ctx.lineWidth=width;
+  ctx.shadowColor=color;
+  ctx.shadowBlur=blur;
+  ctx.lineCap="round";
+  ctx.lineJoin="round";
+}
+
+export function clearGlow(ctx){ctx.shadowBlur=0}
+
+export function saveCanvas(canvas,name){
+  const link=document.createElement("a");
+  link.download=name;
+  link.href=canvas.toDataURL("image/png");
+  link.click();
+}

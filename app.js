@@ -1,10 +1,10 @@
-import {DNA_SCHEMA,mutateDNA} from "./core/dna.js";
-import {state,resetDNA} from "./core/state.js";
-import {seededRandom} from "./core/random.js";
-import {prepareCanvas,drawBackdrop,saveCanvas} from "./core/renderer.js";
-import {renderSeal} from "./engines/seal.js";
-import {renderCosmology} from "./engines/cosmology.js";
-import {renderDevice} from "./engines/device.js";
+import {DNA_SCHEMA,mutateDNA} from "./dna.js";
+import {state,resetDNA} from "./state.js";
+import {seededRandom} from "./random.js";
+import {prepareCanvas,drawBackdrop,saveCanvas} from "./renderer.js";
+import {renderSeal} from "./seal.js";
+import {renderCosmology} from "./cosmology.js";
+import {renderDevice} from "./device.js";
 
 const canvas=document.getElementById("artCanvas");
 const seedInput=document.getElementById("seedInput");
