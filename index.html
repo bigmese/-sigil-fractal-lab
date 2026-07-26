@@ -16,7 +16,7 @@ button,input{font:inherit}.app{max-width:1450px;margin:auto}.top{display:flex;ju
 </head>
 <body>
 <div class="app">
-<header class="top"><div class="brand"><div class="logo"></div><div><h1>SymbolDNA</h1><p>Identity + intent → explainable symbolic construction</p></div></div><div><button class="btn" id="variation">Variation</button> <button class="btn" id="save">Save PNG</button></div></header>
+<header class="top"><div class="brand"><div class="logo"></div><div><h1>SymbolDNA</h1><p>Identity + intent → explainable symbolic construction · v4.2</p></div></div><div><button class="btn" id="variation">Variation</button> <button class="btn" id="save">Save PNG</button></div></header>
 <div class="layout">
 <aside class="card controls">
 <div class="section"><h2>Identity</h2><label class="label">Birth date</label><input class="input" id="date" type="date"><div class="row"><div><label class="label">Birth time</label><input class="input" id="time" type="time"></div><div><label class="label">Birth location</label><input class="input" id="location" placeholder="Las Vegas, NV"></div></div><p class="small">Birth data currently supplies deterministic identity structure. Full natal-chart mapping remains provisional.</p></div>
@@ -57,7 +57,7 @@ function setup(){for(const [k,l] of labels){const b=document.createElement("butt
 function ctxFit(){const c=canvasEl,w=Math.max(720,Math.floor(c.getBoundingClientRect().width*Math.min(devicePixelRatio||1,2)));if(c.width!==w||c.height!==w){c.width=w;c.height=w}const x=c.getContext("2d");x.clearRect(0,0,w,w);return x}
 function P(cx,cy,r,a){return[cx+Math.cos(a)*r,cy+Math.sin(a)*r]}
 function line(x,a=.7,w=2){x.strokeStyle="rgba(226,220,255,"+a+")";x.lineWidth=w;x.lineCap="round";x.lineJoin="round"}
-function draw(){currentDNA=derive();const d=currentDNA.v,r=random(hash(source())),x=ctxFit(),w=canvas.width,c=w/2,R=w*.38;let g=x.createRadialGradient(w*(.4+r()*.18),w*(.33+r()*.16),w*.02,c,c,w*.68);g.addColorStop(0,"#241f38");g.addColorStop(.45,"#0d0c14");g.addColorStop(1,"#050507");x.fillStyle=g;x.fillRect(0,0,w,w);
+function draw(){currentDNA=derive();const d=currentDNA.v,r=random(hash(source())),x=ctxFit(),w=canvasEl.width,c=w/2,R=w*.38;let g=x.createRadialGradient(w*(.4+r()*.18),w*(.33+r()*.16),w*.02,c,c,w*.68);g.addColorStop(0,"#241f38");g.addColorStop(.45,"#0d0c14");g.addColorStop(1,"#050507");x.fillStyle=g;x.fillRect(0,0,w,w);
 for(let j=0;j<currentDNA.layers;j++){const rr=R*(1-j*.095);x.save();x.shadowColor="rgba(139,124,255,.7)";x.shadowBlur=18;line(x,.28+j*.08,Math.max(1.5,R*.007));x.beginPath();if(j===0&&d[5]>.58){for(let i=0;i<=currentDNA.order;i++){const p=P(c,c,rr,-Math.PI/2+i*Math.PI*2/currentDNA.order);i?x.lineTo(...p):x.moveTo(...p)}}else{x.arc(c,c,rr,0,Math.PI*2)}x.stroke();x.restore()}
 const pts=[];for(let i=0;i<currentDNA.order;i++)pts.push(P(c,c,R*.67,-Math.PI/2+i*Math.PI*2/currentDNA.order));const step=1+Math.floor(d[3]*3);x.save();x.shadowColor="rgba(88,210,255,.55)";x.shadowBlur=15;line(x,.65,Math.max(2,R*.006));x.beginPath();for(let i=0;i<currentDNA.order*2+1;i++){const p=pts[(i*step)%pts.length];i?x.lineTo(...p):x.moveTo(...p)}x.stroke();x.restore();
 line(x,.17,Math.max(1,R*.003));if(d[2]>.55)for(const p of pts){x.beginPath();x.moveTo(c,c);x.lineTo(...p);x.stroke()}
