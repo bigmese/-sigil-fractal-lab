@@ -1,0 +1,1 @@
+{"correction_id":"EXP-CORR-000001","record_id":"OBS-000067","field":"pdf_page","source_value":46026,"export_value":"1-4","reason":"Google Sheets interpreted the page range 1-4 as a calendar date serial.","evidence":"PDF pages 1-4","applied_in_dataset_version":"0.1.0"}
