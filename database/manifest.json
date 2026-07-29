@@ -20,8 +20,11 @@
       5
     ],
     "invalidated_from_batch": 6,
-    "generator_integration": "frozen",
-    "complete_corpus": false
+    "generator_integration": "experimental_connected",
+    "complete_corpus": false,
+    "color_generation": "inactive_collection_only",
+    "living_synthesis": "active_experimental",
+    "release_id": "ATLAS-UPDATE-0001"
   },
   "counts": {
     "trusted_source_catalog_records": 22,
@@ -35,7 +38,10 @@
     "dna_candidates": 0,
     "rescreen_queue": 5,
     "integrity_checks": 22,
-    "checkpoints": 12
+    "checkpoints": 12,
+    "color_evidence": 8,
+    "benchmark_cases": 12,
+    "benchmark_results": 12
   },
   "chunks": [
     {
@@ -102,11 +108,39 @@
       "sha256": "a19588017aac0f7f24cfc434657dc8f17581b6b02be07d6bcdc5e86ba3223d98"
     },
     {
+      "path": "database/benchmarks/benchmark-cases-A0.1.0.json",
+      "kind": "benchmark_cases",
+      "format": "json",
+      "records": null,
+      "sha256": "25e9b164b72ee2343afd4310122ae9b85d1a3efab79038ed47c44d2541aa3706"
+    },
+    {
+      "path": "database/benchmarks/benchmark-results-A0.1.0-G0.2.0.json",
+      "kind": "benchmark_results",
+      "format": "json",
+      "records": null,
+      "sha256": "f9773cebc0e1873109ef518710e112d464345a36ac681674c28a506565c09087"
+    },
+    {
       "path": "database/claims/claims-0001.jsonl",
       "kind": "claims",
       "format": "jsonl",
       "records": 74,
       "sha256": "57be6cf37f33e8d02f07f185202e044a14d2ee052708857058c2c6cfcd0e18ba"
+    },
+    {
+      "path": "database/color/color-evidence-0001.jsonl",
+      "kind": "color_evidence",
+      "format": "jsonl",
+      "records": 8,
+      "sha256": "1f4f9137c7310d33a0b487f1d8c422e7249adb5b9b05096c90bfe535dfa8c33b"
+    },
+    {
+      "path": "database/color/color-schema.json",
+      "kind": "color_schema",
+      "format": "json",
+      "records": null,
+      "sha256": "f066b422f78a962a26c6f44e06cf4bf1682874191c777d712a9a651dcb41b461"
     },
     {
       "path": "database/csv/checkpoints.csv",
@@ -207,6 +241,13 @@
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     },
     {
+      "path": "database/generator/generator-profile-A0.1.0.json",
+      "kind": "generator_profile",
+      "format": "json",
+      "records": null,
+      "sha256": "4024552da38b23d8d452d1ad156661914ef467a80a2c8eaa77765b9efa9c7519"
+    },
+    {
       "path": "database/geometry/geometry-families-0001.jsonl",
       "kind": "geometry_families",
       "format": "jsonl",
@@ -289,6 +330,38 @@
       "format": "sqlite",
       "records": null,
       "sha256": "9c80e196b79d95b695aaae2fc5dc13df844874cd000b934212003972591bf4d6"
+    },
+    {
+      "path": "database/synthesis/living-synthesis-A0.1.0.json",
+      "kind": "living_synthesis",
+      "format": "json",
+      "records": null,
+      "sha256": "57cf2ee81009b3d18ad322c48ce9eaba00dc51c12875b0d08c23ef7086d88281"
+    },
+    {
+      "path": "database/updates/ATLAS-UPDATE-0001.json",
+      "kind": "update_impact",
+      "format": "json",
+      "records": null,
+      "sha256": "0211abdc04a0b18927ad6bd0b157ab81de1769e5d68b039776e05e824a53d3b1"
+    }
+  ],
+  "atlas_version": "A0.1.0",
+  "generator_profile_version": "GP0.2.0",
+  "compatible_generator_version": "G0.2.0",
+  "release_history": [
+    {
+      "atlas_version": "A0.1.0",
+      "generator_version": "G0.2.0",
+      "generator_profile_version": "GP0.2.0",
+      "release_id": "ATLAS-UPDATE-0001",
+      "chunks": {
+        "living_synthesis": "database/synthesis/living-synthesis-A0.1.0.json",
+        "generator_profile": "database/generator/generator-profile-A0.1.0.json",
+        "benchmark_cases": "database/benchmarks/benchmark-cases-A0.1.0.json",
+        "benchmark_results": "database/benchmarks/benchmark-results-A0.1.0-G0.2.0.json",
+        "update_impact": "database/updates/ATLAS-UPDATE-0001.json"
+      }
     }
   ]
 }

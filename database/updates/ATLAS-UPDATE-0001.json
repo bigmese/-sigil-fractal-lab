@@ -1,0 +1,36 @@
+{
+  "update_id": "ATLAS-UPDATE-0001",
+  "atlas_version": "A0.1.0",
+  "previous_atlas_version": null,
+  "generated_on": "2026-07-29",
+  "type": "baseline_connected_release",
+  "records_added": {
+    "active_sources": 22,
+    "active_observations": 72,
+    "active_geometries": 20,
+    "active_meanings": 47,
+    "active_lineages": 23,
+    "active_claims": 74,
+    "ledger_sources": 22,
+    "ledger_observations": 72,
+    "ledger_geometries": 20,
+    "ledger_meanings": 47,
+    "ledger_lineages": 23,
+    "ledger_claims": 74
+  },
+  "synthesis_changes": "Initial living-synthesis baseline; no previous release exists for comparison.",
+  "generator_changes": [
+    "Atlas snapshot is now loadable by the website.",
+    "Controlled intention selections retrieve ranked source-scoped evidence.",
+    "Evidence is mapped to eight structural dimensions.",
+    "Symbol Codes replace the visible random seed.",
+    "Color evidence is recorded but inactive."
+  ],
+  "undesirable_feature_review": {
+    "status": "machine_verified_pending_human_review",
+    "benchmark_count": 12,
+    "unique_machine_outputs": 12,
+    "exact_reproduction_test": "passed",
+    "quarantined_rules": []
+  }
+}

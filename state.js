@@ -1,13 +1,3 @@
-import {DEFAULT_DNA,cloneDNA} from "./dna.js";
-
-export const state={
-  mode:"seal",
-  seed:"first-sigil",
-  variation:0,
-  dna:cloneDNA(DEFAULT_DNA),
-  breathing:false
-};
-
-export function resetDNA(){
-  state.dna=cloneDNA(DEFAULT_DNA);
-}
+// Legacy manual-slider state was retired in G0.2.0.
+// The active application derives state from Atlas evidence and Symbol Codes.
+export const state = Object.freeze({ deprecated: true, generatorVersion: "G0.2.0" });
