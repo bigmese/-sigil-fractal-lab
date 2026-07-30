@@ -1,9 +1,0 @@
-﻿feature_keyword,raw_observation_count,source_count,lineage_adjusted_weight,method,status
-circle_or_circular,25,9,17.033332,case-insensitive keyword match across geometry and construction fields,descriptive_preliminary
-star_or_pentagram,10,3,5.833333,case-insensitive keyword match across geometry and construction fields,descriptive_preliminary
-triangle_or_triangular,9,5,5.916666,case-insensitive keyword match across geometry and construction fields,descriptive_preliminary
-square_rectangle_or_grid,9,5,5.791666,case-insensitive keyword match across geometry and construction fields,descriptive_preliminary
-cross_or_axis,38,9,21.533332,case-insensitive keyword match across geometry and construction fields,descriptive_preliminary
-loop_or_spiral,9,2,2.0,case-insensitive keyword match across geometry and construction fields,descriptive_preliminary
-enclosure_or_boundary,31,12,23.991665,case-insensitive keyword match across geometry and construction fields,descriptive_preliminary
-path_or_sequence,34,9,21.074998,case-insensitive keyword match across geometry and construction fields,descriptive_preliminary
