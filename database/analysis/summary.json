@@ -1,0 +1,43 @@
+{
+  "dataset_version": "0.1.0",
+  "generated_on": "2026-07-28",
+  "status": "verified_partial_snapshot",
+  "source_catalog_cutoff": "SRC-000022",
+  "structured_observation_cutoff": "SRC-000015",
+  "next_source": "SRC-000016",
+  "trusted_batches": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "invalidated_from_batch": 6,
+  "generator_integration": "frozen",
+  "complete_corpus": false,
+  "counts": {
+    "trusted_source_catalog_records": 22,
+    "structured_recovered_sources": 15,
+    "observations": 72,
+    "lineages": 23,
+    "geometry_families": 20,
+    "meanings": 47,
+    "claims_and_contradictions": 74,
+    "hypotheses": 0,
+    "dna_candidates": 0,
+    "rescreen_queue": 5,
+    "integrity_checks": 22,
+    "checkpoints": 12
+  },
+  "inspection_counts": {
+    "text_only_or_context": 27,
+    "visually_inspected_figure": 45
+  },
+  "lineage_adjusted_observation_weight": 48.824997,
+  "important_limits": [
+    "Source PDFs and copyrighted page images are not included.",
+    "Sources SRC-000016 through SRC-000022 are trusted catalog records but do not yet have complete structured observation recovery.",
+    "No DNA candidate has been promoted and the generator remains disconnected from the dataset.",
+    "Feature-keyword statistics are descriptive and are not semantic causation claims."
+  ]
+}

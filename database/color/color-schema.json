@@ -1,0 +1,33 @@
+{
+  "schema_version": "0.1.0",
+  "status": "collection_active_generation_inactive",
+  "required_fields": [
+    "color_record_id",
+    "source_id",
+    "observation_id",
+    "page",
+    "inspection_status",
+    "source_wording",
+    "normalized_colors",
+    "where_color_appears",
+    "object_or_symbol_part",
+    "material_or_medium",
+    "stated_association_or_purpose",
+    "evidence_type",
+    "original_color_or_reproduction",
+    "tradition_or_lineage",
+    "confidence",
+    "contradictions",
+    "generator_status"
+  ],
+  "evidence_types": [
+    "color_change_outcome",
+    "colored_object_placement",
+    "directional_or_elemental_correspondence",
+    "replaceable_color_payload",
+    "reproduction_or_scan_color",
+    "required_ink_or_pigment",
+    "source_scoped_symbolic_association"
+  ],
+  "generator_policy": "All color evidence remains inactive until reviewed cross-source synthesis supports a release rule."
+}

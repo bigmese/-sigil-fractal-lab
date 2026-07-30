@@ -1,0 +1,147 @@
+{
+  "atlas_version": "A0.1.0",
+  "generator_version": "G0.2.0",
+  "cases": [
+    {
+      "benchmark_id": "BMK-0001",
+      "identity_key": "e857998e653c5152",
+      "intents": [
+        "protection"
+      ],
+      "cousin": 0,
+      "expected_atlas_version": "A0.1.0",
+      "expected_generator_version": "G0.2.0",
+      "review_status": "baseline_pending_visual_review"
+    },
+    {
+      "benchmark_id": "BMK-0002",
+      "identity_key": "1c6b275bedac2946",
+      "intents": [
+        "wisdom"
+      ],
+      "cousin": 0,
+      "expected_atlas_version": "A0.1.0",
+      "expected_generator_version": "G0.2.0",
+      "review_status": "baseline_pending_visual_review"
+    },
+    {
+      "benchmark_id": "BMK-0003",
+      "identity_key": "c40e1dbce620bff0",
+      "intents": [
+        "balance"
+      ],
+      "cousin": 0,
+      "expected_atlas_version": "A0.1.0",
+      "expected_generator_version": "G0.2.0",
+      "review_status": "baseline_pending_visual_review"
+    },
+    {
+      "benchmark_id": "BMK-0004",
+      "identity_key": "bec175366c94c9b0",
+      "intents": [
+        "transformation"
+      ],
+      "cousin": 0,
+      "expected_atlas_version": "A0.1.0",
+      "expected_generator_version": "G0.2.0",
+      "review_status": "baseline_pending_visual_review"
+    },
+    {
+      "benchmark_id": "BMK-0005",
+      "identity_key": "4e2610ba63e84aa2",
+      "intents": [
+        "protection",
+        "wisdom"
+      ],
+      "cousin": 0,
+      "expected_atlas_version": "A0.1.0",
+      "expected_generator_version": "G0.2.0",
+      "review_status": "baseline_pending_visual_review"
+    },
+    {
+      "benchmark_id": "BMK-0006",
+      "identity_key": "27f42fdcb8f49b97",
+      "intents": [
+        "healing",
+        "balance"
+      ],
+      "cousin": 0,
+      "expected_atlas_version": "A0.1.0",
+      "expected_generator_version": "G0.2.0",
+      "review_status": "baseline_pending_visual_review"
+    },
+    {
+      "benchmark_id": "BMK-0007",
+      "identity_key": "0c6a27b604824dfa",
+      "intents": [
+        "communication",
+        "creativity"
+      ],
+      "cousin": 0,
+      "expected_atlas_version": "A0.1.0",
+      "expected_generator_version": "G0.2.0",
+      "review_status": "baseline_pending_visual_review"
+    },
+    {
+      "benchmark_id": "BMK-0008",
+      "identity_key": "27a208a58557caec",
+      "intents": [
+        "prosperity",
+        "focus"
+      ],
+      "cousin": 0,
+      "expected_atlas_version": "A0.1.0",
+      "expected_generator_version": "G0.2.0",
+      "review_status": "baseline_pending_visual_review"
+    },
+    {
+      "benchmark_id": "BMK-0009",
+      "identity_key": "671cf8cdd65f810a",
+      "intents": [
+        "purification",
+        "protection"
+      ],
+      "cousin": 0,
+      "expected_atlas_version": "A0.1.0",
+      "expected_generator_version": "G0.2.0",
+      "review_status": "baseline_pending_visual_review"
+    },
+    {
+      "benchmark_id": "BMK-0010",
+      "identity_key": "87a82e970030db58",
+      "intents": [
+        "love",
+        "balance"
+      ],
+      "cousin": 0,
+      "expected_atlas_version": "A0.1.0",
+      "expected_generator_version": "G0.2.0",
+      "review_status": "baseline_pending_visual_review"
+    },
+    {
+      "benchmark_id": "BMK-0011",
+      "identity_key": "ea66b09c5ab8647b",
+      "intents": [
+        "courage",
+        "focus"
+      ],
+      "cousin": 0,
+      "expected_atlas_version": "A0.1.0",
+      "expected_generator_version": "G0.2.0",
+      "review_status": "baseline_pending_visual_review"
+    },
+    {
+      "benchmark_id": "BMK-0012",
+      "identity_key": "076929daf0d11cd7",
+      "intents": [
+        "transformation",
+        "communication",
+        "creativity"
+      ],
+      "cousin": 0,
+      "expected_atlas_version": "A0.1.0",
+      "expected_generator_version": "G0.2.0",
+      "review_status": "baseline_pending_visual_review"
+    }
+  ]
+}

@@ -1,0 +1,367 @@
+{
+  "database_version": "0.1.0",
+  "strategy": "append-only-chunks",
+  "generated_on": "2026-07-28",
+  "source_database": {
+    "title": "Symbol Atlas Master Database",
+    "drive_file_id": "1GxAcpaU6IaxtEmKvcd2Ma60AUuP5QUGRX0hOTKruE-U",
+    "authority": "Google Drive active audit workspace"
+  },
+  "snapshot": {
+    "status": "verified_partial_snapshot",
+    "trusted_source_catalog_cutoff": "SRC-000022",
+    "structured_observation_cutoff": "SRC-000015",
+    "next_source": "SRC-000016",
+    "trusted_batches": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "invalidated_from_batch": 6,
+    "generator_integration": "experimental_connected",
+    "complete_corpus": false,
+    "color_generation": "inactive_collection_only",
+    "living_synthesis": "active_experimental",
+    "release_id": "ATLAS-UPDATE-0001"
+  },
+  "counts": {
+    "trusted_source_catalog_records": 22,
+    "structured_recovered_sources": 15,
+    "observations": 72,
+    "lineages": 23,
+    "geometry_families": 20,
+    "meanings": 47,
+    "claims_and_contradictions": 74,
+    "hypotheses": 0,
+    "dna_candidates": 0,
+    "rescreen_queue": 5,
+    "integrity_checks": 22,
+    "checkpoints": 12,
+    "color_evidence": 8,
+    "benchmark_cases": 12,
+    "benchmark_results": 12
+  },
+  "chunks": [
+    {
+      "path": "database/analysis/observation-classification-counts.csv",
+      "kind": "database_analysis_observation-classification-counts.csv",
+      "format": "csv",
+      "records": null,
+      "sha256": "1ad0e68d8933a89da98a1d9f5340aada1f4bbf2bc5e9518220996d54af64a60c"
+    },
+    {
+      "path": "database/analysis/primitive-keyword-counts.csv",
+      "kind": "database_analysis_primitive-keyword-counts.csv",
+      "format": "csv",
+      "records": null,
+      "sha256": "aa3d28cfbbf031fbe08eaa1f7a2ed1f670f55bffc0e3cb35d4abafdd3cf1b315"
+    },
+    {
+      "path": "database/analysis/source-observation-counts.csv",
+      "kind": "database_analysis_source-observation-counts.csv",
+      "format": "csv",
+      "records": null,
+      "sha256": "1a872b0f401442cd8e8baf348f747345266dd98ca47e209e47e0811c46a9439a"
+    },
+    {
+      "path": "database/analysis/summary.json",
+      "kind": "database_analysis_summary.json",
+      "format": "json",
+      "records": null,
+      "sha256": "3b555d450798d815853cab39b190c0b0a722a6825428895ddd0c32eedf256bef"
+    },
+    {
+      "path": "database/audit/checkpoints-0001.jsonl",
+      "kind": "checkpoints",
+      "format": "jsonl",
+      "records": 12,
+      "sha256": "4cb1216b4421172f92a0ea3b6dea68164a5f7c6eb1e69e2e3a7e25e90f243be5"
+    },
+    {
+      "path": "database/audit/export-corrections-0001.jsonl",
+      "kind": "export_corrections",
+      "format": "jsonl",
+      "records": 1,
+      "sha256": "cc50030c98ddbb55c4e40490936e97dc4a375472284a692ab482b0c875b63e27"
+    },
+    {
+      "path": "database/audit/integrity-0001.jsonl",
+      "kind": "integrity",
+      "format": "jsonl",
+      "records": 22,
+      "sha256": "e37102931944c0beda971ef65b96c7f02f89cdbfda8f989339ba9e2d125e0e6d"
+    },
+    {
+      "path": "database/audit/recovery-staging-0001.jsonl",
+      "kind": "recovery_staging",
+      "format": "jsonl",
+      "records": 22,
+      "sha256": "4112cb44d430e830b07ed36400142226d9994dbbf7b943fd1aab50696c458d2b"
+    },
+    {
+      "path": "database/audit/rescreen-queue-0001.jsonl",
+      "kind": "rescreen_queue",
+      "format": "jsonl",
+      "records": 5,
+      "sha256": "a19588017aac0f7f24cfc434657dc8f17581b6b02be07d6bcdc5e86ba3223d98"
+    },
+    {
+      "path": "database/benchmarks/benchmark-cases-A0.1.0.json",
+      "kind": "benchmark_cases",
+      "format": "json",
+      "records": null,
+      "sha256": "25e9b164b72ee2343afd4310122ae9b85d1a3efab79038ed47c44d2541aa3706"
+    },
+    {
+      "path": "database/benchmarks/benchmark-results-A0.1.0-G0.2.0.json",
+      "kind": "benchmark_results",
+      "format": "json",
+      "records": null,
+      "sha256": "f9773cebc0e1873109ef518710e112d464345a36ac681674c28a506565c09087"
+    },
+    {
+      "path": "database/claims/claims-0001.jsonl",
+      "kind": "claims",
+      "format": "jsonl",
+      "records": 74,
+      "sha256": "57be6cf37f33e8d02f07f185202e044a14d2ee052708857058c2c6cfcd0e18ba"
+    },
+    {
+      "path": "database/color/color-evidence-0001.jsonl",
+      "kind": "color_evidence",
+      "format": "jsonl",
+      "records": 8,
+      "sha256": "1f4f9137c7310d33a0b487f1d8c422e7249adb5b9b05096c90bfe535dfa8c33b"
+    },
+    {
+      "path": "database/color/color-schema.json",
+      "kind": "color_schema",
+      "format": "json",
+      "records": null,
+      "sha256": "f066b422f78a962a26c6f44e06cf4bf1682874191c777d712a9a651dcb41b461"
+    },
+    {
+      "path": "database/csv/checkpoints.csv",
+      "kind": "database_csv_checkpoints.csv",
+      "format": "csv",
+      "records": null,
+      "sha256": "940df5422d135f07330878a5fccbbc754e946acc127285c8fe3d438580ac864d"
+    },
+    {
+      "path": "database/csv/claims.csv",
+      "kind": "database_csv_claims.csv",
+      "format": "csv",
+      "records": null,
+      "sha256": "e86714bbc23ff57e9bd70033b0ee1465248034aab5399de743a6f3a7a2a3b398"
+    },
+    {
+      "path": "database/csv/dna-candidates.csv",
+      "kind": "database_csv_dna-candidates.csv",
+      "format": "csv",
+      "records": null,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "database/csv/export-corrections.csv",
+      "kind": "database_csv_export-corrections.csv",
+      "format": "csv",
+      "records": null,
+      "sha256": "950be182708afbc45b5dc8ca275f917ca83a2690bf9eb8c2e9ae5a35a058b517"
+    },
+    {
+      "path": "database/csv/geometry-families.csv",
+      "kind": "database_csv_geometry-families.csv",
+      "format": "csv",
+      "records": null,
+      "sha256": "7e082e35ef177ddcc0182f281669940bcce6f7a1623825de3c8d7332a1f94643"
+    },
+    {
+      "path": "database/csv/hypotheses.csv",
+      "kind": "database_csv_hypotheses.csv",
+      "format": "csv",
+      "records": null,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "database/csv/integrity.csv",
+      "kind": "database_csv_integrity.csv",
+      "format": "csv",
+      "records": null,
+      "sha256": "075e9685f21f8f104c280bb06a24c4443a13280acbaff2835ef2619c74ca3225"
+    },
+    {
+      "path": "database/csv/lineages.csv",
+      "kind": "database_csv_lineages.csv",
+      "format": "csv",
+      "records": null,
+      "sha256": "04cb9e818329358638533d42dbaeb233bebda76df767f9daaf10c06448c7f4be"
+    },
+    {
+      "path": "database/csv/meanings.csv",
+      "kind": "database_csv_meanings.csv",
+      "format": "csv",
+      "records": null,
+      "sha256": "f17d5eeded3aea2109839801bb1923feae49b62e9d4edf7d27e16bcf99030b3a"
+    },
+    {
+      "path": "database/csv/observations.csv",
+      "kind": "database_csv_observations.csv",
+      "format": "csv",
+      "records": null,
+      "sha256": "5be4e4fd5945427f6e8fb3aa34bd16c424a3eac5146e0027aa8adb98581427be"
+    },
+    {
+      "path": "database/csv/recovery-staging.csv",
+      "kind": "database_csv_recovery-staging.csv",
+      "format": "csv",
+      "records": null,
+      "sha256": "00400f37b61cea145a33fbf10c40582a505de6e6e0130e8db489db3aada8c6ba"
+    },
+    {
+      "path": "database/csv/rescreen-queue.csv",
+      "kind": "database_csv_rescreen-queue.csv",
+      "format": "csv",
+      "records": null,
+      "sha256": "17661f3cf0f1514d83c7cc474047f3752069c8e1e5d7b8ca015da158e134ea15"
+    },
+    {
+      "path": "database/csv/sources.csv",
+      "kind": "database_csv_sources.csv",
+      "format": "csv",
+      "records": null,
+      "sha256": "e1c5d25f7ca2da72d56d2257b8323078966af3570cfd04c66decc41b582af06d"
+    },
+    {
+      "path": "database/dna/dna-candidates-0001.jsonl",
+      "kind": "dna_candidates",
+      "format": "jsonl",
+      "records": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "database/generator/generator-profile-A0.1.0.json",
+      "kind": "generator_profile",
+      "format": "json",
+      "records": null,
+      "sha256": "4024552da38b23d8d452d1ad156661914ef467a80a2c8eaa77765b9efa9c7519"
+    },
+    {
+      "path": "database/geometry/geometry-families-0001.jsonl",
+      "kind": "geometry_families",
+      "format": "jsonl",
+      "records": 20,
+      "sha256": "aaad323b7679621816c5605e66edc001e4a00f0291e55ca658851c3a9e9d0379"
+    },
+    {
+      "path": "database/hypotheses/hypotheses-0001.jsonl",
+      "kind": "hypotheses",
+      "format": "jsonl",
+      "records": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "database/legacy/catalog-progress-excluded-0001.jsonl",
+      "kind": "database_legacy_catalog-progress-excluded-0001.jsonl",
+      "format": "jsonl",
+      "records": 1,
+      "sha256": "55826057b5302f5189bc6bf5ea34f0dd8f6b3df4f5985d8c23ceb43cb47610c1"
+    },
+    {
+      "path": "database/legacy/hypotheses-excluded-0001.jsonl",
+      "kind": "database_legacy_hypotheses-excluded-0001.jsonl",
+      "format": "jsonl",
+      "records": 1,
+      "sha256": "d10cd57927e65583de7d9c8562b673e52ad6ef1cab0e5d413b84fc58f40fdca3"
+    },
+    {
+      "path": "database/legacy/observations-excluded-0001.jsonl",
+      "kind": "database_legacy_observations-excluded-0001.jsonl",
+      "format": "jsonl",
+      "records": 1,
+      "sha256": "22fd10547f1a52e11e55ba819c1e332f4fce573812dd4ada9a95b65cc8ef160a"
+    },
+    {
+      "path": "database/legacy/sources-excluded-0001.jsonl",
+      "kind": "database_legacy_sources-excluded-0001.jsonl",
+      "format": "jsonl",
+      "records": 1,
+      "sha256": "4c3476255ebf201cda2ddac12d98cf9dd995e1e1a474729647dc07b5d9d3c8ac"
+    },
+    {
+      "path": "database/lineages/lineages-0001.jsonl",
+      "kind": "lineages",
+      "format": "jsonl",
+      "records": 23,
+      "sha256": "e6096153d9136a8ad70597a0cd0d18a47860bddb4ee7ab7308b120736b34bffa"
+    },
+    {
+      "path": "database/meanings/meanings-0001.jsonl",
+      "kind": "meanings",
+      "format": "jsonl",
+      "records": 47,
+      "sha256": "dde13db95317e44eb6da2ea480b04ae3663d8604c2ddedff42cfbc17204c9de7"
+    },
+    {
+      "path": "database/observations/observations-0001.jsonl",
+      "kind": "observations",
+      "format": "jsonl",
+      "records": 72,
+      "sha256": "f1c1fc910f9bc5725bdac0ccb733dfb4c55cf08e5790ccc075200f06339d9010"
+    },
+    {
+      "path": "database/schema/registry.json",
+      "kind": "database_schema_registry.json",
+      "format": "json",
+      "records": null,
+      "sha256": "c6acd46883166251767cf735199bb2993a7f4b33fbd289147e15a383c26cd541"
+    },
+    {
+      "path": "database/sources/sources-0001.jsonl",
+      "kind": "sources",
+      "format": "jsonl",
+      "records": 22,
+      "sha256": "03b7702ed91b554f100de25fcada5e558cfae52e58223dbaf82743fbd4dac9cc"
+    },
+    {
+      "path": "database/sqlite/symbol-atlas-v0.1.0.sqlite",
+      "kind": "database_sqlite_symbol-atlas-v0.1.0.sqlite",
+      "format": "sqlite",
+      "records": null,
+      "sha256": "9c80e196b79d95b695aaae2fc5dc13df844874cd000b934212003972591bf4d6"
+    },
+    {
+      "path": "database/synthesis/living-synthesis-A0.1.0.json",
+      "kind": "living_synthesis",
+      "format": "json",
+      "records": null,
+      "sha256": "57cf2ee81009b3d18ad322c48ce9eaba00dc51c12875b0d08c23ef7086d88281"
+    },
+    {
+      "path": "database/updates/ATLAS-UPDATE-0001.json",
+      "kind": "update_impact",
+      "format": "json",
+      "records": null,
+      "sha256": "0211abdc04a0b18927ad6bd0b157ab81de1769e5d68b039776e05e824a53d3b1"
+    }
+  ],
+  "atlas_version": "A0.1.0",
+  "generator_profile_version": "GP0.2.0",
+  "compatible_generator_version": "G0.2.0",
+  "release_history": [
+    {
+      "atlas_version": "A0.1.0",
+      "generator_version": "G0.2.0",
+      "generator_profile_version": "GP0.2.0",
+      "release_id": "ATLAS-UPDATE-0001",
+      "chunks": {
+        "living_synthesis": "database/synthesis/living-synthesis-A0.1.0.json",
+        "generator_profile": "database/generator/generator-profile-A0.1.0.json",
+        "benchmark_cases": "database/benchmarks/benchmark-cases-A0.1.0.json",
+        "benchmark_results": "database/benchmarks/benchmark-results-A0.1.0-G0.2.0.json",
+        "update_impact": "database/updates/ATLAS-UPDATE-0001.json"
+      }
+    }
+  ]
+}
