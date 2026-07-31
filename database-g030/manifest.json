@@ -1,0 +1,50 @@
+{
+  "database_version": "0.2.0",
+  "updated": "2026-07-30",
+  "strategy": "append-only-chunks",
+  "generative_matrix_status": "frozen-corpus-rules-with-experimental-intention-profiles",
+  "chunks": [
+    {
+      "path": "database-g030/atlas/symbols-0001.jsonl",
+      "kind": "symbols",
+      "format": "jsonl",
+      "records": 3,
+      "sha256": "a8cebc654cc4e430442740a92a24e3a5556161c436db24aa807a4cba9ad48686"
+    },
+    {
+      "path": "database-g030/dna/features-0001.jsonl",
+      "kind": "features",
+      "format": "jsonl",
+      "records": 5,
+      "sha256": "5875a4119c0b3cfbf8ee8756236f0704e810c9993ad307b6d90b7450473a2766"
+    },
+    {
+      "path": "database-g030/dna/grammars-0001.jsonl",
+      "kind": "grammars",
+      "format": "jsonl",
+      "records": 3,
+      "sha256": "414495b6f75f8106bcf3dd8598820138f234517718901d0bb95fad8a4811ab54"
+    },
+    {
+      "path": "database-g030/research/correlations-0001.jsonl",
+      "kind": "correlations",
+      "format": "jsonl",
+      "records": 3,
+      "sha256": "9432d90b23aac007a5cb0ccb7fc360ec041f75c974907266dd3b58dad1a5fcd1"
+    },
+    {
+      "path": "database-g030/research/hypotheses-0001.jsonl",
+      "kind": "hypotheses",
+      "format": "jsonl",
+      "records": 2,
+      "sha256": "9b2d5f6326a6c0cf7044b664f8ba14b2d7575ac05f294e4ed67d772cb947983e"
+    },
+    {
+      "path": "database-g030/generation/intention-profiles-0001.jsonl",
+      "kind": "intention_profiles",
+      "format": "jsonl",
+      "records": 9,
+      "sha256": "3139233b9c09cbab9520023e4e7d9409d24cdfc3270d5b0b7a0afe012d0840b6"
+    }
+  ]
+}

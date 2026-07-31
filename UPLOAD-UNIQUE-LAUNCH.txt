@@ -1,0 +1,22 @@
+SYMBOLDNA G0.3.0 — UNIQUE LAUNCH PATCH U1
+
+WHY THIS EXISTS
+The repository currently contains a mixture of Stage 1 files and later-stage files.
+This package does not overwrite or depend on any old Stage 1 filename.
+
+UPLOAD
+Upload every extracted file and folder directly to the repository root.
+
+NEW FILES
+app-030-u1.html
+manifest-g030-u1.json
+assets/css/app-g030-u1.css
+assets/js/*-g030-u1.js
+database-g030/*
+
+TEST
+After GitHub Pages rebuilds, open:
+
+YOUR-GITHUB-PAGES-ADDRESS/app-030-u1.html
+
+Do not test the normal root address yet. The unique page is the controlled verification build.

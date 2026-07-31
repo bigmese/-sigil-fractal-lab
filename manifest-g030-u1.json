@@ -1,0 +1,13 @@
+{
+  "name": "SymbolDNA G0.3.0 Unique Launch",
+  "short_name": "SymbolDNA",
+  "description": "Deterministic sacred-geometry synthesis guided by the append-only Symbol Atlas.",
+  "start_url": "./app-030-u1.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#05070d",
+  "theme_color": "#070a12",
+  "orientation": "any",
+  "lang": "en-US",
+  "id": "./app-030-u1.html"
+}

@@ -1,0 +1,7 @@
+{
+  "release": "G0.3.0",
+  "build": "U1",
+  "entry": "app-030-u1.html",
+  "database": "database-g030/manifest.json",
+  "purpose": "Avoid every existing Stage 1 filename and verify Stages 2\u20136 independently."
+}

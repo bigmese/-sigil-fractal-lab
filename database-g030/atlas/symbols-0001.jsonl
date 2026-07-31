@@ -1,0 +1,3 @@
+{"id":"atlas-000001","title":"Bounded operational field","record_type":"symbol_family","status":"corpus-derived","confidence":0.86,"notes":"Enclosure marks an operational or identity domain; it does not universally mean protection."}
+{"id":"atlas-000002","title":"Reduced-letter composite glyph","record_type":"construction_family","status":"historical","confidence":0.9,"notes":"Letters are deduplicated, rotated, overlapped, and compressed."}
+{"id":"atlas-000003","title":"Geomantic derivation graph","record_type":"construction_family","status":"historical","confidence":0.95,"notes":"Binary inputs are deterministically recombined into derived symbolic states."}
