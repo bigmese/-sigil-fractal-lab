@@ -1,0 +1,12 @@
+{
+  "name": "SymbolDNA",
+  "short_name": "SymbolDNA",
+  "description": "Sacred Geometry Synthesis Platform",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#06080f",
+  "theme_color": "#0f172a",
+  "orientation": "any",
+  "lang": "en-US"
+}

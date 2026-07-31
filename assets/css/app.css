@@ -11,7 +11,6 @@
   --bg: #06080f;
   --bg-elevated: rgba(14, 18, 31, 0.82);
   --panel: rgba(16, 22, 38, 0.76);
-  --panel-strong: rgba(22, 29, 49, 0.9);
   --border: rgba(154, 174, 255, 0.16);
   --border-strong: rgba(154, 174, 255, 0.28);
 
@@ -73,10 +72,6 @@ input,
 select,
 textarea {
   font: inherit;
-}
-
-button {
-  color: inherit;
 }
 
 svg {
@@ -200,21 +195,15 @@ svg {
   color: var(--text-muted);
   background: rgba(4, 7, 14, 0.32);
   font-size: 0.9rem;
-  transition:
-    border-color 160ms ease,
-    color 160ms ease,
-    background 160ms ease;
 }
 
-#diagnostics li[data-state="success"],
-#diagnostics li.success {
+#diagnostics li[data-state="success"] {
   color: var(--text);
   border-color: rgba(97, 214, 164, 0.3);
   background: rgba(97, 214, 164, 0.07);
 }
 
-#diagnostics li[data-state="error"],
-#diagnostics li.error {
+#diagnostics li[data-state="error"] {
   color: var(--text);
   border-color: rgba(255, 127, 145, 0.34);
   background: rgba(255, 127, 145, 0.075);
