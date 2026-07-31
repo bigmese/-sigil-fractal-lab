@@ -1,60 +1,32 @@
 const VALID_STATES = new Set(["pending", "success", "error"]);
 
 export class Diagnostics {
-  constructor(documentRef = document) {
-    this.document = documentRef;
+  constructor(root = document) {
+    this.root = root;
   }
 
-  set(id, state, detail = "") {
-    if (!VALID_STATES.has(state)) {
-      throw new Error(`Unknown diagnostic state: ${state}`);
-    }
-
-    const row = this.document.getElementById(`diag-${id}`);
-    if (!row) {
-      throw new Error(`Diagnostic row not found: ${id}`);
-    }
-
+  set(name, state, detail = "") {
+    if (!VALID_STATES.has(state)) throw new Error(`Invalid diagnostic state: ${state}`);
+    const row = this.root.querySelector(`[data-diagnostic="${name}"]`);
+    if (!row) throw new Error(`Diagnostic row not found: ${name}`);
     row.dataset.state = state;
-
-    const indicator = row.querySelector(".status");
-    if (indicator) {
-      indicator.className = `status ${state}`;
-    }
-
-    if (detail) {
-      row.title = detail;
-      row.setAttribute("aria-label", `${id}: ${state}. ${detail}`);
-    } else {
-      row.removeAttribute("title");
-      row.setAttribute("aria-label", `${id}: ${state}`);
-    }
+    const message = row.querySelector("small");
+    if (message) message.textContent = detail || state;
+    row.title = detail || state;
   }
 
-  pending(id, detail = "") {
-    this.set(id, "pending", detail);
-  }
+  success(name, detail = "Ready") { this.set(name, "success", detail); }
+  pending(name, detail = "Pending") { this.set(name, "pending", detail); }
+  error(name, error) { this.set(name, "error", error instanceof Error ? error.message : String(error)); }
 
-  success(id, detail = "") {
-    this.set(id, "success", detail);
-  }
-
-  error(id, error) {
-    const detail = error instanceof Error ? error.message : String(error);
-    this.set(id, "error", detail);
-  }
-
-  failRemaining(ids, reason) {
-    for (const id of ids) {
-      const row = this.document.getElementById(`diag-${id}`);
-      if (row?.dataset.state !== "success") {
-        this.error(id, reason);
-      }
+  failRemaining(names, error) {
+    for (const name of names) {
+      const row = this.root.querySelector(`[data-diagnostic="${name}"]`);
+      if (row?.dataset.state !== "success") this.error(name, error);
     }
   }
 }
 
-export function cssIsReady(documentRef = document) {
-  const rootStyle = getComputedStyle(documentRef.documentElement);
-  return rootStyle.getPropertyValue("--symboldna-css-ready").trim() === "1";
+export function cssIsReady() {
+  return getComputedStyle(document.documentElement).getPropertyValue("--symboldna-css-ready").trim() === "1";
 }

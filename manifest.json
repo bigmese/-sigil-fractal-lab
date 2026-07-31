@@ -1,12 +1,12 @@
 {
-  "name": "SymbolDNA",
+  "name": "SymbolDNA G0.3.0",
   "short_name": "SymbolDNA",
-  "description": "Sacred Geometry Synthesis Platform",
+  "description": "Deterministic sacred-geometry synthesis guided by the append-only Symbol Atlas.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#06080f",
-  "theme_color": "#0f172a",
+  "background_color": "#05070d",
+  "theme_color": "#070a12",
   "orientation": "any",
   "lang": "en-US"
 }

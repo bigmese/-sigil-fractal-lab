@@ -1,0 +1,5 @@
+{"id":"feature-000001","name":"boundary_count","type":"integer","status":"corpus-derived"}
+{"id":"feature-000002","name":"center_role","type":"enum","status":"corpus-derived","values":["none","identity","operator","target","source","synthesis","altar","fire","unknown"]}
+{"id":"feature-000003","name":"construction_depth","type":"integer","status":"corpus-derived"}
+{"id":"feature-000004","name":"input_encoding_mode","type":"enum","status":"corpus-derived","values":["letters","numbers","images","inherited_glyph","astrological_coordinates","binary_figures","mixed"]}
+{"id":"feature-000005","name":"traversal_mode","type":"enum","status":"historical/corpus-derived","values":["none","clockwise","counterclockwise","vertex_sequence","free_path","derived_path"]}

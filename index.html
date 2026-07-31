@@ -1,90 +1,219 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#070a12">
+  <meta name="description" content="SymbolDNA — deterministic sacred-geometry synthesis guided by the Symbol Atlas.">
   <title>SymbolDNA G0.3.0</title>
-
-  <meta
-    name="description"
-    content="SymbolDNA — Sacred Geometry Synthesis Platform"
-  >
-  <meta name="theme-color" content="#0f172a">
-
   <link rel="manifest" href="manifest.json">
   <link rel="stylesheet" href="assets/css/app.css">
 </head>
-
 <body>
-  <div id="app">
-    <header class="header">
-      <h1>SymbolDNA</h1>
-      <p class="subtitle">Generation 0.3.0</p>
+  <div id="app" class="app-shell">
+    <header class="topbar">
+      <div class="brand-block">
+        <div class="brand-mark" aria-hidden="true">
+          <span></span><span></span><span></span>
+        </div>
+        <div>
+          <p class="eyebrow">Symbol Atlas synthesis platform</p>
+          <h1>SymbolDNA <span>G0.3.0</span></h1>
+        </div>
+      </div>
+      <div class="topbar-meta">
+        <span id="atlasVersionBadge" class="status-pill">Atlas loading</span>
+        <button id="openDiagnosticsButton" class="icon-button" type="button" aria-label="Open diagnostics">Diagnostics</button>
+      </div>
     </header>
 
-    <main class="main">
-      <section class="panel">
-        <h2>System Diagnostics</h2>
-
-        <ul id="diagnostics" aria-live="polite">
-          <li id="diag-html">
-            <span class="status pending" aria-hidden="true"></span>
-            HTML
-          </li>
-
-          <li id="diag-css">
-            <span class="status pending" aria-hidden="true"></span>
-            CSS
-          </li>
-
-          <li id="diag-js">
-            <span class="status pending" aria-hidden="true"></span>
-            JavaScript
-          </li>
-
-          <li id="diag-atlas">
-            <span class="status pending" aria-hidden="true"></span>
-            Atlas
-          </li>
-
-          <li id="diag-svg">
-            <span class="status pending" aria-hidden="true"></span>
-            SVG Renderer
-          </li>
-        </ul>
-      </section>
-
-      <section class="panel">
-        <h2>Status</h2>
-        <div id="system-status" role="status" aria-live="polite">
-          Initialising...
+    <main class="workspace">
+      <aside class="control-panel glass-panel" aria-label="Symbol controls">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Primary inputs</p>
+            <h2>Create a symbol</h2>
+          </div>
+          <span class="stage-chip">Stages 2–6</span>
         </div>
+
+        <label class="field-group" for="identityInput">
+          <span class="field-label">Identity</span>
+          <span class="field-help">A name, word, phrase, or project identity.</span>
+          <input id="identityInput" type="text" value="SymbolDNA" maxlength="120" autocomplete="off" spellcheck="false">
+        </label>
+
+        <label class="field-group" for="intentSelect">
+          <span class="field-label">Intent</span>
+          <span class="field-help">Intent modifies geometry; it is not treated as historical proof.</span>
+          <select id="intentSelect"></select>
+        </label>
+
+        <div class="primary-actions">
+          <button id="generateButton" class="button primary" type="button">Generate symbol</button>
+          <button id="variationButton" class="button" type="button">New variation</button>
+        </div>
+
+        <div class="symbol-identity-card">
+          <div>
+            <span class="mini-label">Symbol code</span>
+            <strong id="symbolCode">—</strong>
+          </div>
+          <button id="copyCodeButton" class="text-button" type="button">Copy</button>
+          <div class="seed-row">
+            <span class="mini-label">Deterministic seed</span>
+            <code id="seedDisplay">—</code>
+          </div>
+        </div>
+
+        <div class="toggle-grid">
+          <label class="toggle-control">
+            <input id="constructionToggle" type="checkbox">
+            <span class="toggle-track" aria-hidden="true"></span>
+            <span>
+              <strong>Show construction</strong>
+              <small>Reveal circles, axes, anchors, and guide lines.</small>
+            </span>
+          </label>
+
+          <label class="toggle-control">
+            <input id="animationToggle" type="checkbox" checked>
+            <span class="toggle-track" aria-hidden="true"></span>
+            <span>
+              <strong>Construction reveal</strong>
+              <small>Animate scaffold first, then the final mark.</small>
+            </span>
+          </label>
+        </div>
+
+        <details class="advanced-panel">
+          <summary>Generation controls</summary>
+          <div class="advanced-grid">
+            <label>
+              <span>Density</span>
+              <input id="densityInput" type="range" min="0" max="100" value="55">
+              <output id="densityOutput">55</output>
+            </label>
+            <label>
+              <span>Curvature</span>
+              <input id="curvatureInput" type="range" min="0" max="100" value="68">
+              <output id="curvatureOutput">68</output>
+            </label>
+            <label>
+              <span>Complexity</span>
+              <input id="complexityInput" type="range" min="0" max="100" value="58">
+              <output id="complexityOutput">58</output>
+            </label>
+          </div>
+        </details>
+
+        <div class="export-block">
+          <p class="eyebrow">Export</p>
+          <div class="export-grid">
+            <button id="exportSvgButton" class="button small" type="button">SVG</button>
+            <button id="exportPngButton" class="button small" type="button">PNG</button>
+            <button id="exportJsonButton" class="button small" type="button">Blueprint</button>
+          </div>
+        </div>
+      </aside>
+
+      <section class="canvas-panel glass-panel">
+        <div class="canvas-header">
+          <div>
+            <p class="eyebrow">Sacred geometry construction</p>
+            <h2 id="canvasTitle">Untitled synthesis</h2>
+          </div>
+          <div class="canvas-badges">
+            <span id="grammarBadge" class="status-pill muted">No grammar</span>
+            <span id="symmetryBadge" class="status-pill muted">— fold</span>
+          </div>
+        </div>
+
+        <div id="canvasFrame" class="canvas-frame">
+          <svg id="symbolCanvas" viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="canvasTitle canvasDescription">
+            <title id="canvasDescription">A deterministic SymbolDNA synthesis.</title>
+            <defs>
+              <filter id="symbolGlow" x="-40%" y="-40%" width="180%" height="180%">
+                <feGaussianBlur stdDeviation="5" result="blur"></feGaussianBlur>
+                <feMerge><feMergeNode in="blur"></feMergeNode><feMergeNode in="SourceGraphic"></feMergeNode></feMerge>
+              </filter>
+              <radialGradient id="canvasAura" cx="50%" cy="45%" r="60%">
+                <stop offset="0%" stop-color="var(--aura-color)" stop-opacity=".24"></stop>
+                <stop offset="65%" stop-color="var(--aura-color)" stop-opacity=".05"></stop>
+                <stop offset="100%" stop-color="#03050a" stop-opacity="0"></stop>
+              </radialGradient>
+            </defs>
+            <rect class="canvas-background" width="1000" height="1000" rx="34"></rect>
+            <circle class="canvas-aura" cx="500" cy="500" r="455"></circle>
+            <g id="constructionCircleLayer" class="construction-layer construction-circles"></g>
+            <g id="constructionLineLayer" class="construction-layer construction-lines"></g>
+            <g id="anchorLayer" class="construction-layer anchor-layer"></g>
+            <g id="curveLayer" class="visible-layer curve-layer"></g>
+            <g id="glyphLayer" class="visible-layer glyph-layer"></g>
+            <g id="terminalLayer" class="visible-layer terminal-layer"></g>
+          </svg>
+          <div id="canvasLoading" class="canvas-loading">Preparing Atlas geometry…</div>
+        </div>
+
+        <footer class="canvas-footer">
+          <div><span class="mini-label">Topology</span><strong id="topologyReadout">—</strong></div>
+          <div><span class="mini-label">Boundaries</span><strong id="boundaryReadout">—</strong></div>
+          <div><span class="mini-label">Center role</span><strong id="centerReadout">—</strong></div>
+          <div><span class="mini-label">Traversal</span><strong id="traversalReadout">—</strong></div>
+        </footer>
       </section>
 
-      <section class="panel">
-        <h2>Construction Canvas</h2>
+      <aside class="inspector-panel glass-panel">
+        <nav class="tab-list" aria-label="Inspector views">
+          <button class="tab-button active" type="button" data-tab="blueprint">Blueprint</button>
+          <button class="tab-button" type="button" data-tab="atlas">Atlas</button>
+          <button class="tab-button" type="button" data-tab="diagnostics">Diagnostics</button>
+        </nav>
 
-        <svg
-          id="construction-canvas"
-          viewBox="0 0 1000 1000"
-          xmlns="http://www.w3.org/2000/svg"
-          role="img"
-          aria-label="SymbolDNA construction canvas"
-        >
-          <rect
-            x="0"
-            y="0"
-            width="1000"
-            height="1000"
-            class="canvas-background"
-          />
+        <section id="blueprintTab" class="tab-panel active" data-panel="blueprint">
+          <div class="section-heading compact">
+            <div><p class="eyebrow">Explainable synthesis</p><h2>Blueprint inspector</h2></div>
+          </div>
+          <div id="blueprintSummary" class="blueprint-summary empty-state">Generate a symbol to inspect its structural decisions.</div>
+          <div id="blueprintRules" class="rule-list"></div>
+        </section>
 
-          <g id="construction-layer"></g>
-          <g id="symbol-layer"></g>
-        </svg>
-      </section>
+        <section id="atlasTab" class="tab-panel" data-panel="atlas">
+          <div class="section-heading compact">
+            <div><p class="eyebrow">Append-only knowledge</p><h2>Atlas explorer</h2></div>
+            <span id="atlasRecordCount" class="stage-chip">0 records</span>
+          </div>
+          <label class="search-field">
+            <span class="sr-only">Search Atlas</span>
+            <input id="atlasSearchInput" type="search" placeholder="Search records, features, or status">
+          </label>
+          <div id="atlasFilterBar" class="filter-bar"></div>
+          <div id="atlasRecordList" class="atlas-record-list"></div>
+        </section>
+
+        <section id="diagnosticsTab" class="tab-panel" data-panel="diagnostics">
+          <div class="section-heading compact">
+            <div><p class="eyebrow">Permanent startup checks</p><h2>Diagnostics</h2></div>
+          </div>
+          <ul id="diagnosticsList" class="diagnostics-list" aria-live="polite">
+            <li data-diagnostic="html"><span></span><strong>HTML</strong><small>Pending</small></li>
+            <li data-diagnostic="css"><span></span><strong>CSS</strong><small>Pending</small></li>
+            <li data-diagnostic="js"><span></span><strong>JavaScript</strong><small>Pending</small></li>
+            <li data-diagnostic="manifest"><span></span><strong>Manifest</strong><small>Pending</small></li>
+            <li data-diagnostic="database"><span></span><strong>Atlas database</strong><small>Pending</small></li>
+            <li data-diagnostic="blueprint"><span></span><strong>Blueprint engine</strong><small>Pending</small></li>
+            <li data-diagnostic="renderer"><span></span><strong>SVG renderer</strong><small>Pending</small></li>
+            <li data-diagnostic="export"><span></span><strong>Export tools</strong><small>Pending</small></li>
+          </ul>
+          <div id="systemMessage" class="system-message" data-state="loading">Starting SymbolDNA…</div>
+        </section>
+      </aside>
     </main>
+
+    <footer class="site-footer">
+      <span>SymbolDNA G0.3.0</span>
+      <span>Atlas evidence remains append-only; intention profiles are explicitly experimental.</span>
+    </footer>
   </div>
 
   <script type="module" src="assets/js/app.js"></script>

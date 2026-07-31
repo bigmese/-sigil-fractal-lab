@@ -1,40 +1,41 @@
-# SymbolDNA G0.3.0
+# SymbolDNA G0.3.0 — Stages 2–6
 
-Stage 1 establishes a clean, GitHub Pages-compatible application foundation.
+This cumulative repository replaces the Stage 1 foundation with a usable deterministic SymbolDNA application.
 
-## Included
+## What works
 
-- Modern responsive interface
-- ES module bootstrap
+- Identity + Intent primary inputs
+- Deterministic seed and compact Symbol Code
+- Atlas-driven Structural Blueprint engine
+- Sacred-geometry construction circles, axes, radial divisions, and anchors
+- Curves derived from the hidden construction scaffold
+- Construction View toggle and staged reveal animation
+- Blueprint Inspector with evidence/status explanations
+- Append-only Atlas Explorer with search and filters
+- SVG, PNG, and Blueprint JSON export
 - Permanent startup diagnostics
-- Append-only Atlas loader
-- Validated JSON Atlas foundation
-- SVG construction canvas
-- Visible foundation geometry
-- No external dependencies
+- Responsive GitHub Pages-compatible interface
 
-## Deploy on GitHub Pages
+## Research boundary
 
-1. Upload the **contents inside** the `SymbolDNA-G0.3.0` folder to the root of the repository.
-2. In GitHub, open **Settings → Pages**.
-3. Choose **Deploy from a branch**.
-4. Select the repository's main branch and the `/ (root)` folder.
-5. Save and wait for GitHub Pages to publish.
+The preserved corpus chunks remain authoritative and append-only. The intention profiles added in `database/generation/intention-profiles-0001.jsonl` are marked `experimental-ui-profile`. They alter structural parameters but are not presented as proven historical meaning correlations.
 
-Do not open `index.html` directly from the computer. The Atlas uses `fetch()`, so the project must be served through GitHub Pages or another HTTP server.
+## Upload to GitHub
 
-## Expected diagnostics
+1. Extract this ZIP.
+2. Open the extracted `SymbolDNA-G0.3.0-All-Stages` folder.
+3. Upload **everything inside that folder** to the root of your GitHub repository, replacing files with the same names.
+4. In GitHub Pages settings, deploy from the main branch and `/ (root)`.
+5. Wait for deployment, then hard-refresh the site.
 
-After deployment, the page should report:
+`.nojekyll` is intentionally not required by this build.
 
-- HTML — success
-- CSS — success
-- JavaScript — success
-- Atlas — success
-- SVG Renderer — success
+## Validation
 
-The canvas should display three construction circles, eight radial guides, anchor points, and a simple visible foundation mark.
+For local validation with Node.js:
 
-## Stage status
+```bash
+npm run validate
+```
 
-This is **Stage 1 only**. Blueprint synthesis and full symbol generation are intentionally not enabled yet.
+Do not double-click `index.html` directly. The Atlas uses `fetch()`, so use GitHub Pages or a local HTTP server.

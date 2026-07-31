@@ -1,0 +1,3 @@
+{"id":"corr-000001","feature":"enclosure","target":"bounded_operational_domain","confidence":0.86,"status":"corpus-derived"}
+{"id":"corr-000002","feature":"circle","target":"protection_exclusively","confidence":0.08,"status":"rejected"}
+{"id":"corr-000003","feature":"vertical_backbone","target":"structural_compression_axis","confidence":0.63,"status":"corpus-derived"}

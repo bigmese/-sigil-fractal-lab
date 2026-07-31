@@ -1,78 +1,58 @@
-const ATLAS_URL = new URL("../db/atlas.json", import.meta.url);
+const ROOT_URL = new URL("../../", import.meta.url);
+const MANIFEST_URL = new URL("database/manifest.json", ROOT_URL);
 
-function assertObject(value, label) {
-  if (!value || typeof value !== "object" || Array.isArray(value)) {
-    throw new TypeError(`${label} must be an object.`);
-  }
+function parseJsonLines(text, path) {
+  return text.split(/\r?\n/).map(line => line.trim()).filter(Boolean).map((line, index) => {
+    try { return JSON.parse(line); }
+    catch (error) { throw new Error(`${path} contains invalid JSONL at line ${index + 1}.`, { cause: error }); }
+  });
 }
 
-function validateAtlas(atlas) {
-  assertObject(atlas, "Atlas");
+async function sha256(text) {
+  if (!globalThis.crypto?.subtle) return null;
+  const bytes = new TextEncoder().encode(text);
+  const digest = await crypto.subtle.digest("SHA-256", bytes);
+  return [...new Uint8Array(digest)].map(byte => byte.toString(16).padStart(2, "0")).join("");
+}
 
-  if (atlas.schema !== "symboldna-atlas") {
-    throw new Error("Atlas schema identifier is invalid.");
-  }
-
-  if (typeof atlas.version !== "string" || atlas.version.length === 0) {
-    throw new Error("Atlas version is missing.");
-  }
-
-  if (!Array.isArray(atlas.records)) {
-    throw new Error("Atlas records must be an array.");
-  }
-
-  if (!Array.isArray(atlas.updateHistory)) {
-    throw new Error("Atlas updateHistory must be an array.");
-  }
-
-  assertObject(atlas.capabilities, "Atlas capabilities");
-
-  if (atlas.capabilities.appendOnly !== true) {
-    throw new Error("Atlas must declare append-only behavior.");
-  }
-
-  return atlas;
+function validateManifest(manifest) {
+  if (!manifest || typeof manifest !== "object") throw new Error("Atlas manifest is not an object.");
+  if (manifest.strategy !== "append-only-chunks") throw new Error("Atlas must use append-only-chunks strategy.");
+  if (!Array.isArray(manifest.chunks) || manifest.chunks.length === 0) throw new Error("Atlas manifest has no chunks.");
+  return manifest;
 }
 
 export async function loadAtlas() {
-  let response;
+  let manifestResponse;
+  try { manifestResponse = await fetch(MANIFEST_URL, { cache: "no-store" }); }
+  catch (error) { throw new Error("Could not request the Atlas manifest. Use GitHub Pages or another web server.", { cause: error }); }
+  if (!manifestResponse.ok) throw new Error(`Atlas manifest returned HTTP ${manifestResponse.status}.`);
+  const manifest = validateManifest(await manifestResponse.json());
 
-  try {
-    response = await fetch(ATLAS_URL, {
-      cache: "no-store",
-      headers: {
-        Accept: "application/json"
-      }
-    });
-  } catch (error) {
-    throw new Error(
-      "Atlas request failed. Open the project through GitHub Pages or another web server.",
-      { cause: error }
-    );
+  const byKind = {};
+  const chunks = [];
+  for (const entry of manifest.chunks) {
+    const response = await fetch(new URL(entry.path, ROOT_URL), { cache: "no-store" });
+    if (!response.ok) throw new Error(`${entry.path} returned HTTP ${response.status}.`);
+    const text = await response.text();
+    const records = entry.format === "jsonl" ? parseJsonLines(text, entry.path) : JSON.parse(text);
+    if (records.length !== entry.records) throw new Error(`${entry.path} expected ${entry.records} records but loaded ${records.length}.`);
+    const digest = await sha256(text);
+    if (digest && entry.sha256 && digest !== entry.sha256) throw new Error(`${entry.path} failed SHA-256 validation.`);
+    byKind[entry.kind] = [...(byKind[entry.kind] || []), ...records];
+    chunks.push({ ...entry, verified: !digest || digest === entry.sha256 });
   }
 
-  if (!response.ok) {
-    throw new Error(
-      `Atlas request returned HTTP ${response.status} ${response.statusText}.`
-    );
-  }
-
-  let atlas;
-
-  try {
-    atlas = await response.json();
-  } catch (error) {
-    throw new Error("Atlas JSON could not be parsed.", { cause: error });
-  }
-
-  return validateAtlas(atlas);
+  const allRecords = Object.entries(byKind).flatMap(([kind, records]) => records.map(record => ({ ...record, atlasKind: kind })));
+  return Object.freeze({ manifest: Object.freeze(manifest), byKind: Object.freeze(byKind), allRecords: Object.freeze(allRecords), chunks: Object.freeze(chunks) });
 }
 
-export function getAtlasSummary(atlas) {
+export function atlasSummary(atlas) {
   return {
-    name: atlas.name,
-    version: atlas.version,
-    recordCount: atlas.records.length,
-    appendOnly: atlas.capabilities.appendOnly
+    version: atlas.manifest.database_version,
+    updated: atlas.manifest.updated,
+    chunkCount: atlas.manifest.chunks.length,
+    recordCount: atlas.allRecords.length,
+    strategy: atlas.manifest.strategy
   };
 }

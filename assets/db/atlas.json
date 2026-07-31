@@ -1,27 +1,10 @@
 {
   "schema": "symboldna-atlas",
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "name": "Symbol Atlas",
-  "version": "0.3.0-stage1",
+  "version": "0.2.0",
   "release": "G0.3.0",
-  "description": "Append-only structural knowledge base for SymbolDNA.",
-  "createdAt": "2026-07-30T00:00:00Z",
-  "capabilities": {
-    "appendOnly": true,
-    "livingSynthesis": false,
-    "blueprintGeneration": false,
-    "symbolGeneration": false
-  },
-  "records": [],
-  "constructionRules": [],
-  "intentionProfiles": [],
-  "updateHistory": [
-    {
-      "id": "ATLAS-UPDATE-0001",
-      "type": "foundation",
-      "version": "0.3.0-stage1",
-      "description": "Created the empty append-only Atlas foundation.",
-      "recordCountAfter": 0
-    }
-  ]
+  "strategy": "append-only-chunks",
+  "manifest": "../../database/manifest.json",
+  "note": "Compatibility pointer. The authoritative Atlas is database/manifest.json plus immutable JSONL chunks."
 }
