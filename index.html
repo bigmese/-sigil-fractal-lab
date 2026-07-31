@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SymbolDNA G0.3.0</title>
+  <meta name="description" content="SymbolDNA — Sacred Geometry Synthesis Platform">
+  <meta name="theme-color" content="#0f172a">
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="assets/css/app.css">
+</head>
+<body>
+  <div id="app">
+    <header class="header">
+      <h1>SymbolDNA</h1>
+      <p class="subtitle">Generation 0.3.0</p>
+    </header>
+
+    <main class="main">
+      <section class="panel">
+        <h2>System Diagnostics</h2>
+        <ul id="diagnostics">
+          <li id="diag-html"><span class="status pending"></span>HTML</li>
+          <li id="diag-css"><span class="status pending"></span>CSS</li>
+          <li id="diag-js"><span class="status pending"></span>JavaScript</li>
+          <li id="diag-atlas"><span class="status pending"></span>Atlas</li>
+          <li id="diag-svg"><span class="status pending"></span>SVG Renderer</li>
+        </ul>
+      </section>
+
+      <section class="panel">
+        <h2>Status</h2>
+        <div id="system-status">Initialising...</div>
+      </section>
+
+      <section class="panel">
+        <h2>Construction Canvas</h2>
+        <svg id="construction-canvas" viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="SymbolDNA construction canvas">
+          <rect x="0" y="0" width="1000" height="1000" class="canvas-background"></rect>
+          <g id="construction-layer"></g>
+          <g id="symbol-layer"></g>
+        </svg>
+      </section>
+    </main>
+  </div>
+
+  <script type="module" src="assets/js/app.js"></script>
+</body>
+</html>
